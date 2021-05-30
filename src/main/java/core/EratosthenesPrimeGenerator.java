@@ -13,7 +13,8 @@ public class EratosthenesPrimeGenerator implements PrimeNumberGenerator{
     }
 
     public boolean isPrime(int value) {
-	// TODO Auto-generated method stub
+	if(value >= FIRST_PRIME_NUMBER)
+	    return true;
 	return false;
     }
 	
