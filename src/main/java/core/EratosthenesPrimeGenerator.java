@@ -13,8 +13,18 @@ public class EratosthenesPrimeGenerator implements PrimeNumberGenerator{
     }
 
     public boolean isPrime(int value) {
-	if(value >= FIRST_PRIME_NUMBER)
+	if(value == FIRST_PRIME_NUMBER)
 	    return true;
+	
+	if(value >= FIRST_PRIME_NUMBER) {
+	    for(int divisor = 2; divisor <= Math.sqrt(value); divisor++) {
+		if(value % divisor == 0)
+		    return false;
+	    }
+	
+	    return true;
+	}
+	    	
 	return false;
     }
 	

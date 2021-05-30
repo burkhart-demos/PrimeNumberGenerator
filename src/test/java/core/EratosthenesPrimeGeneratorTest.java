@@ -39,70 +39,60 @@ public class EratosthenesPrimeGeneratorTest {
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrime19() {
 	boolean actual = classUnderTest.isPrime(19);
 	Assertions.assertTrue(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrimeNegative19() {
 	boolean actual = classUnderTest.isPrime(-19);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrime20() {
 	boolean actual = classUnderTest.isPrime(20);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrimeNegative20() {
 	boolean actual = classUnderTest.isPrime(-20);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrime21() {
 	boolean actual = classUnderTest.isPrime(21);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrimeNegative21() {
 	boolean actual = classUnderTest.isPrime(-21);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrime7902() {
 	boolean actual = classUnderTest.isPrime(7902);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrimeNegative7902() {
 	boolean actual = classUnderTest.isPrime(-7902);
 	Assertions.assertFalse(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrime7907() {
 	boolean actual = classUnderTest.isPrime(7907);
 	Assertions.assertTrue(actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testIsPrimeNegative7907() {
 	boolean actual = classUnderTest.isPrime(-7907);
 	Assertions.assertFalse(actual);
