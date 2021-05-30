@@ -3,6 +3,9 @@ package api;
 import java.util.List;
 
 public interface PrimeNumberGenerator {
-	List<Integer> generate(int startValue, int endValue);
-	boolean isPrime();
+    	
+    public static final Integer FIRST_PRIME_NUMBER = 2;
+    List<Integer> generate(int startValue, int endValue);
+    boolean isPrime(int value);
+	
 }
