@@ -1,5 +1,8 @@
 package core;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -8,6 +11,8 @@ import org.junit.jupiter.api.Test;
 public class EratosthenesPrimeGeneratorTest {
     
     EratosthenesPrimeGenerator classUnderTest;
+    
+    static final List<Integer> EXPECTED_7900_TO_7920 = Arrays.asList(7901, 7907, 7919);
 
     @BeforeEach
     protected void setUp() throws Exception {
@@ -96,6 +101,20 @@ public class EratosthenesPrimeGeneratorTest {
     void testIsPrimeNegative7907() {
 	boolean actual = classUnderTest.isPrime(-7907);
 	Assertions.assertFalse(actual);
+    }
+    
+    @Test
+    @Disabled("Not implemented")
+    void testGenerate7900To7920() {
+	List<Integer> actual = classUnderTest.generate(7900, 7920);
+	Assertions.assertEquals(EXPECTED_7900_TO_7920, actual);
+    }
+    
+    @Test
+    @Disabled("Not implemented")
+    void testGenerate7920To7900() {
+	List<Integer> actual = classUnderTest.generate(7920, 7900);
+	Assertions.assertEquals(EXPECTED_7900_TO_7920, actual);
     }
 
 }
