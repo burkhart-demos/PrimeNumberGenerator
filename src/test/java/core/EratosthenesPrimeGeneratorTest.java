@@ -133,6 +133,18 @@ public class EratosthenesPrimeGeneratorTest {
     }
     
     @Test
+    void testGenerateNegative50To1() {
+	List<Integer> actual = classUnderTest.generate(-50, 1);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+    }
+    
+    @Test
+    void testGenerateNegative50ToNegative1() {
+	List<Integer> actual = classUnderTest.generate(-50, -1);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+    }
+    
+    @Test
     void testGenerate0To0() {
 	List<Integer> actual = classUnderTest.generate(0, 0);
 	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
