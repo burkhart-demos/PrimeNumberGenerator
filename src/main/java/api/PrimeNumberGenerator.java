@@ -11,7 +11,7 @@ public interface PrimeNumberGenerator {
      * 
      * @param startValue starting integer of range
      * @param endValue ending integer of range
-     * @return a list of any prime numbers in range
+     * @return a list of any prime numbers in range, empty list if no primes are in the range
      */
     List<Integer> generate(int startValue, int endValue);
     
