@@ -2,8 +2,10 @@ package core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -11,13 +13,15 @@ import org.junit.jupiter.api.Test;
 
 public class EratosthenesPrimeGeneratorTest {
     
-    EratosthenesPrimeGenerator classUnderTest;
+    private EratosthenesPrimeGenerator classUnderTest;
     
-    static final List<Integer> EXPECTED_7900_TO_7920 = Arrays.asList(7901, 7907, 7919);
+    private static final List<Integer> EXPECTED_7900_TO_7920 = Arrays.asList(7901, 7907, 7919);
     
-    static final List<Integer> EXPECTED_NEGATIVE_50_TO_50 = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47);
+    private static final List<Integer> EXPECTED_NEGATIVE_50_TO_50 = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47);
     
-    static final List<Integer> EXPECTED_NO_PRIMES_IN_RANGE = new ArrayList<>();
+    private static final List<Integer> EXPECTED_MAX_10_INT = Arrays.asList(Integer.MAX_VALUE);
+    
+    private static final List<Integer> EXPECTED_NO_PRIMES_IN_RANGE = Collections.emptyList();
 
     @BeforeEach
     protected void setUp() throws Exception {
@@ -45,6 +49,12 @@ public class EratosthenesPrimeGeneratorTest {
     @Test
     void testIsPrime1() {
 	boolean actual = classUnderTest.isPrime(1);
+	Assertions.assertFalse(actual);
+    }
+    
+    @Test
+    void testIsPrimeNegative1() {
+	boolean actual = classUnderTest.isPrime(-1);
 	Assertions.assertFalse(actual);
     }
     
@@ -105,6 +115,18 @@ public class EratosthenesPrimeGeneratorTest {
     @Test
     void testIsPrimeNegative7907() {
 	boolean actual = classUnderTest.isPrime(-7907);
+	Assertions.assertFalse(actual);
+    }
+    
+    @Test
+    void testIsPrimeMaxInteger() {
+	boolean actual = classUnderTest.isPrime(Integer.MAX_VALUE);
+	Assertions.assertTrue(actual);
+    }
+    
+    @Test
+    void testIsPrimeMinInteger() {
+	boolean actual = classUnderTest.isPrime(Integer.MIN_VALUE);
 	Assertions.assertFalse(actual);
     }
     
@@ -180,6 +202,13 @@ public class EratosthenesPrimeGeneratorTest {
     void testGenerate21To21() {
 	List<Integer> actual = classUnderTest.generate(21, 21);
 	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+    }
+    
+    @Test
+    @Ignore
+    void testGenerateLast10Integers() {
+	List<Integer> actual = classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);
+	Assertions.assertEquals(EXPECTED_MAX_10_INT, actual);
     }
 
 }
