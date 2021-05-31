@@ -13,6 +13,8 @@ public class EratosthenesPrimeGeneratorTest {
     EratosthenesPrimeGenerator classUnderTest;
     
     static final List<Integer> EXPECTED_7900_TO_7920 = Arrays.asList(7901, 7907, 7919);
+    
+    static final List<Integer> EXPECTED_NEGATIVE_50_TO_50 = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47);
 
     @BeforeEach
     protected void setUp() throws Exception {
@@ -113,6 +115,20 @@ public class EratosthenesPrimeGeneratorTest {
     void testGenerate7920To7900() {
 	List<Integer> actual = classUnderTest.generate(7920, 7900);
 	Assertions.assertEquals(EXPECTED_7900_TO_7920, actual);
+    }
+    
+    @Test
+    @Disabled("Not implemented")
+    void testGenerateNegative50To50() {
+	List<Integer> actual = classUnderTest.generate(-50, 50);
+	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
+    }
+    
+    @Test
+    @Disabled("Not implemented")
+    void testGenerate50ToNegative50() {
+	List<Integer> actual = classUnderTest.generate(50, -50);
+	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
     }
 
 }
