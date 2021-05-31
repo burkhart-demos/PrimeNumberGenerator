@@ -13,6 +13,8 @@ public class EratosthenesPrimeGenerator implements PrimeNumberGenerator{
     public List<Integer> generate(int startValue, int endValue) {
 	int minValue = startValue <= endValue ? startValue : endValue;
 	int maxValue = endValue >= startValue ? endValue : startValue;
+	minValue = minValue > -1 ? minValue : 0;
+	maxValue = maxValue > -1 ? maxValue : 0;
 	
 	List<Boolean> primeSieve = new ArrayList<>();
 	for(int i = 0; i <= maxValue; i++) {

@@ -118,14 +118,12 @@ public class EratosthenesPrimeGeneratorTest {
     }
     
     @Test
-    @Disabled("Not implemented")
     void testGenerateNegative50To50() {
 	List<Integer> actual = classUnderTest.generate(-50, 50);
 	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
     }
     
     @Test
-    @Disabled("Not implemented")
     void testGenerate50ToNegative50() {
 	List<Integer> actual = classUnderTest.generate(50, -50);
 	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
