@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -205,8 +204,8 @@ public class EratosthenesPrimeGeneratorTest {
     }
     
     @Test
-    @Ignore
-    void testGenerateLast10Integers() {
+    @Disabled("Running time to long for regression testing")
+    void testGenerateUpToMaxInt() {
 	List<Integer> actual = classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);
 	Assertions.assertEquals(EXPECTED_MAX_10_INT, actual);
     }

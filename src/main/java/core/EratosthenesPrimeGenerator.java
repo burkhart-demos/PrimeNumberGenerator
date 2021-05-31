@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,23 +17,21 @@ public class EratosthenesPrimeGenerator implements PrimeNumberGenerator{
 	minValue = minValue > -1 ? minValue : 0;
 	maxValue = maxValue > -1 ? maxValue : 0;
 	
-	List<Boolean> primeSieve = new ArrayList<>();
-	for(int i = 0; i <= maxValue; i++) {
-	    if(i < FIRST_PRIME_NUMBER)
-		primeSieve.add(false);
-	    else
-		primeSieve.add(true);
-	}
+	PrimeSieve sieve = new PrimeSieve();
 	
         for(int i = FIRST_PRIME_NUMBER; i <= Math.sqrt(maxValue); i++){
-            if(primeSieve.get(i)){
+            if(sieve.isPrime(i)){
                 for(int j = i*i; j <= maxValue; j = j+i){
-                    primeSieve.set(j, false);
+                    sieve.markComposite(j);
+                    long nextNum = (long)j + (long)i;
+                    if(nextNum>Integer.MAX_VALUE) {
+                	break;
+                    }
                 }
             }
         }
         
-        return IntStream.range(minValue, maxValue+1).boxed().filter(value -> primeSieve.get(value)).collect(Collectors.toList());
+        return IntStream.rangeClosed(minValue, maxValue).boxed().filter(value -> sieve.isPrime(value)).collect(Collectors.toList());
     }
 
     public boolean isPrime(int value) {
@@ -52,8 +51,10 @@ public class EratosthenesPrimeGenerator implements PrimeNumberGenerator{
 	
 
     public static void main(String[] args) {
-	// TODO Auto-generated method stub
-
+	int startValue = Integer.valueOf(args[0]);
+	int endValue = Integer.valueOf(args[1]);
+	
+	System.out.println(new EratosthenesPrimeGenerator().generate(startValue, endValue));
     }
 
 }
