@@ -18,8 +18,6 @@ public class EratosthenesPrimeGeneratorTest {
     
     private static final List<Integer> EXPECTED_NEGATIVE_50_TO_50 = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47);
     
-    private static final List<Integer> EXPECTED_MAX_10_INT = Arrays.asList(Integer.MAX_VALUE);
-    
     private static final List<Integer> EXPECTED_NO_PRIMES_IN_RANGE = Collections.emptyList();
 
     @BeforeEach
@@ -206,8 +204,15 @@ public class EratosthenesPrimeGeneratorTest {
     @Test
     @Disabled("Running time to long for regression testing")
     void testGenerateUpToMaxInt() {
+	List<Integer> expected = Arrays.asList(Integer.MAX_VALUE);
 	List<Integer> actual = classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);
-	Assertions.assertEquals(EXPECTED_MAX_10_INT, actual);
+	Assertions.assertEquals(expected, actual);
+    }
+    
+    @Test
+    void testGenerateDownToMinInt() {
+	List<Integer> actual = classUnderTest.generate(Integer.MIN_VALUE, Integer.MIN_VALUE+10);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
     }
 
 }
