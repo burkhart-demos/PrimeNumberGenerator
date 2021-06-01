@@ -2,6 +2,12 @@ package api;
 
 import java.util.List;
 
+/**
+ * A prime number generator and prime number validation interface
+ * 
+ * @author Joe Burkhart
+ *
+ */
 public interface PrimeNumberGenerator {
     	
     public static final Integer FIRST_PRIME_NUMBER = 2;

@@ -9,10 +9,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
-public class EratosthenesPrimeGeneratorTest {
+import api.PrimeNumberGeneratorFactory;
+import api.PrimeSieve;
+
+public class SievePrimeGeneratorTest {
     
-    private EratosthenesPrimeGenerator classUnderTest;
+    private SievePrimeGenerator classUnderTest;
+    
+    private PrimeNumberGeneratorFactory factoryMock;
+    
+    private PrimeSieve sieveMock;
     
     private static final List<Integer> EXPECTED_7900_TO_7920 = Arrays.asList(7901, 7907, 7919);
     
@@ -22,7 +32,10 @@ public class EratosthenesPrimeGeneratorTest {
 
     @BeforeEach
     protected void setUp() throws Exception {
-	classUnderTest = new EratosthenesPrimeGenerator();
+	factoryMock = Mockito.mock(PrimeNumberGeneratorFactory.class);
+	sieveMock = Mockito.mock(PrimeSieve.class);
+	Mockito.when(factoryMock.createPrimeSieve()).thenReturn(sieveMock);
+	classUnderTest = new SievePrimeGenerator(factoryMock);
     }
     
     @Test
@@ -129,89 +142,81 @@ public class EratosthenesPrimeGeneratorTest {
     
     @Test
     void testGenerate7900To7920() {
-	List<Integer> actual = classUnderTest.generate(7900, 7920);
-	Assertions.assertEquals(EXPECTED_7900_TO_7920, actual);
+	when(sieveMock.generate(7900, 7920)).thenReturn(EXPECTED_7900_TO_7920);
+	Assertions.assertEquals(EXPECTED_7900_TO_7920, classUnderTest.generate(7900, 7920));
+	verify(sieveMock).generate(7900, 7920);
     }
     
     @Test
     void testGenerate7920To7900() {
-	List<Integer> actual = classUnderTest.generate(7920, 7900);
-	Assertions.assertEquals(EXPECTED_7900_TO_7920, actual);
+	when(sieveMock.generate(7920, 7900)).thenReturn(EXPECTED_7900_TO_7920);
+	Assertions.assertEquals(EXPECTED_7900_TO_7920, classUnderTest.generate(7920, 7900));
+	verify(sieveMock).generate(7920, 7900);
     }
     
     @Test
     void testGenerateNegative50To50() {
-	List<Integer> actual = classUnderTest.generate(-50, 50);
-	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
+	when(sieveMock.generate(-50, 50)).thenReturn(EXPECTED_NEGATIVE_50_TO_50);
+	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, classUnderTest.generate(-50, 50));
+	verify(sieveMock).generate(-50, 50);
     }
     
     @Test
     void testGenerate50ToNegative50() {
-	List<Integer> actual = classUnderTest.generate(50, -50);
-	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, actual);
+	when(sieveMock.generate(50, -50)).thenReturn(EXPECTED_NEGATIVE_50_TO_50);
+	Assertions.assertEquals(EXPECTED_NEGATIVE_50_TO_50, classUnderTest.generate(50, -50));
+	verify(sieveMock).generate(50, -50);
     }
     
     @Test
-    void testGenerateNegative50To1() {
-	List<Integer> actual = classUnderTest.generate(-50, 1);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+    void testGenerateNegative100ToNegative1() {
+	when(sieveMock.generate(-100, -1)).thenReturn(EXPECTED_NO_PRIMES_IN_RANGE);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, classUnderTest.generate(-100, -1));
+	verify(sieveMock).generate(-100, -1);
     }
     
     @Test
-    void testGenerateNegative50ToNegative1() {
-	List<Integer> actual = classUnderTest.generate(-50, -1);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+    void testGenerateNegative1ToNegative100() {
+	when(sieveMock.generate(-1, -100)).thenReturn(EXPECTED_NO_PRIMES_IN_RANGE);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, classUnderTest.generate(-1, -100));
+	verify(sieveMock).generate(-1, -100);
     }
     
     @Test
     void testGenerate0To0() {
-	List<Integer> actual = classUnderTest.generate(0, 0);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+	when(sieveMock.generate(0, 0)).thenReturn(EXPECTED_NO_PRIMES_IN_RANGE);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, classUnderTest.generate(0, 0));
+	verify(sieveMock).generate(0, 0);
     }
     
     @Test
     void testGenerate2To2() {
 	List<Integer> expected = Arrays.asList(2);
-	List<Integer> actual = classUnderTest.generate(2, 2);
-	Assertions.assertEquals(expected, actual);
+	when(sieveMock.generate(2, 2)).thenReturn(expected);
+	Assertions.assertEquals(expected, classUnderTest.generate(2, 2));
+	verify(sieveMock).generate(2, 2);
     }
     
     @Test
     void testGenerateNegative2ToNegative2() {
-	List<Integer> actual = classUnderTest.generate(-2, -2);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
-    }
-    
-    @Test
-    void testGenerate19To19() {
-	List<Integer> expected = Arrays.asList(19);
-	List<Integer> actual = classUnderTest.generate(19, 19);
-	Assertions.assertEquals(expected, actual);
-    }
-    
-    @Test
-    void testGenerate20To20() {
-	List<Integer> actual = classUnderTest.generate(20, 20);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
-    }
-    
-    @Test
-    void testGenerate21To21() {
-	List<Integer> actual = classUnderTest.generate(21, 21);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+	when(sieveMock.generate(-2, -2)).thenReturn(EXPECTED_NO_PRIMES_IN_RANGE);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, classUnderTest.generate(-2, -2));
+	verify(sieveMock).generate(-2, -2);
     }
     
     @Test
     void testGenerateUpToMaxInt() {
 	List<Integer> expected = Arrays.asList(Integer.MAX_VALUE);
-	List<Integer> actual = classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);
-	Assertions.assertEquals(expected, actual);
+	when(sieveMock.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE)).thenReturn(expected);
+	Assertions.assertEquals(expected, classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE));
+	verify(sieveMock).generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);
     }
     
     @Test
     void testGenerateDownToMinInt() {
-	List<Integer> actual = classUnderTest.generate(Integer.MIN_VALUE, Integer.MIN_VALUE+10);
-	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, actual);
+	when(sieveMock.generate(Integer.MIN_VALUE, Integer.MIN_VALUE+10)).thenReturn(EXPECTED_NO_PRIMES_IN_RANGE);
+	Assertions.assertEquals(EXPECTED_NO_PRIMES_IN_RANGE, classUnderTest.generate(Integer.MIN_VALUE, Integer.MIN_VALUE+10));
+	verify(sieveMock).generate(Integer.MIN_VALUE, Integer.MIN_VALUE+10);
     }
 
 }
