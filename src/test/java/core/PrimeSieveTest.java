@@ -25,9 +25,20 @@ public class PrimeSieveTest {
     }
     
     @Test
+    void testIsPrimeNegative2() {
+	Assertions.assertFalse(classUnderTest.isPrime(-2));
+    }
+    
+    @Test
     void testMarkComposite2() {
 	classUnderTest.markComposite(2);
 	Assertions.assertFalse(classUnderTest.isPrime(2));
+    }
+    
+    @Test
+    void testMarkCompositeNegative2() {
+	classUnderTest.markComposite(-2);
+	Assertions.assertFalse(classUnderTest.isPrime(-2));
     }
     
     @Test
@@ -36,11 +47,20 @@ public class PrimeSieveTest {
     }
     
     @Test
+    void testIsPrimeMinInt() {
+	Assertions.assertFalse(classUnderTest.isPrime(Integer.MIN_VALUE));
+    }
+    
+    @Test
     void testMarkCompositeMaxInt() {
 	classUnderTest.markComposite(Integer.MAX_VALUE);
 	Assertions.assertFalse(classUnderTest.isPrime(Integer.MAX_VALUE));
     }
     
-    
+    @Test
+    void testMarkCompositeMinInt() {
+	classUnderTest.markComposite(Integer.MIN_VALUE);
+	Assertions.assertFalse(classUnderTest.isPrime(Integer.MIN_VALUE));
+    }
 
 }

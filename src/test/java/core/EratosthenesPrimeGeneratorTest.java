@@ -202,7 +202,6 @@ public class EratosthenesPrimeGeneratorTest {
     }
     
     @Test
-    @Disabled("Running time to long for regression testing")
     void testGenerateUpToMaxInt() {
 	List<Integer> expected = Arrays.asList(Integer.MAX_VALUE);
 	List<Integer> actual = classUnderTest.generate(Integer.MAX_VALUE-10, Integer.MAX_VALUE);

@@ -17,21 +17,26 @@ public class PrimeSieve {
     }
     
     /**
-     * Returns whether a value is prime based on state of the Sieve.
+     * Returns whether a value is prime based on state of the Sieve. Returns false for any negative value.
      * 
      * @param value integer to check
      * @return true if the value is recognized as prime internally, else false
      */
     public boolean isPrime(int value) {
+	if(value < 0) {
+	    return false;
+	}
 	return !this.sieve.get(value);
     }
     
     /**
-     * Sets a given value as composite.
+     * Sets a given value as composite. Does nothing if the value given is negative.
      * 
      * @param value integer value to set as a composite number
      */
     public void markComposite(int value) {
-	this.sieve.set(value, true);
+	if(value >= 0) {
+	    this.sieve.set(value, true);
+	}
     }
 }
