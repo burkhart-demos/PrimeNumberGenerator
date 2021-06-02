@@ -1,4 +1,4 @@
-package api;
+package com.burkhart.primenumbergenerator.api;
 
 import java.util.List;
 

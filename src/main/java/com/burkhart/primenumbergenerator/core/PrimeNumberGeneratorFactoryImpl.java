@@ -1,8 +1,8 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
-import api.PrimeNumberGenerator;
-import api.PrimeNumberGeneratorFactory;
-import api.PrimeSieve;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGenerator;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGeneratorFactory;
+import com.burkhart.primenumbergenerator.api.PrimeSieve;
 
 public class PrimeNumberGeneratorFactoryImpl implements PrimeNumberGeneratorFactory{
 

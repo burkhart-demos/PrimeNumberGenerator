@@ -1,6 +1,5 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,12 +8,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 
-import api.PrimeNumberGeneratorFactory;
-import api.PrimeSieve;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGeneratorFactory;
+import com.burkhart.primenumbergenerator.api.PrimeSieve;
+import com.burkhart.primenumbergenerator.core.SievePrimeGenerator;
+
+import static org.mockito.Mockito.*;
 
 public class SievePrimeGeneratorTest {
     

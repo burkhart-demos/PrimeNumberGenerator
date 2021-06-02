@@ -1,4 +1,4 @@
-package api;
+package com.burkhart.primenumbergenerator.api;
 
 /**
  * A factory pattern for instantiating concrete implementations of project interfaces.

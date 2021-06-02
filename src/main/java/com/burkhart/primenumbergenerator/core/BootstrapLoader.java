@@ -1,6 +1,6 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
-import api.PrimeNumberGeneratorFactory;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGeneratorFactory;
 
 /**
  * Main class for running the PrimeNumberGenerator from the command line.  Expects exactly two arguments that
@@ -16,7 +16,8 @@ public class BootstrapLoader {
     
     public static void main(String... args) {
 	if(args.length != 2) {
-	    throw new IllegalArgumentException("Expected exactly two integer arguments {startValue} {endValue}");
+	    System.out.println("Terminated execution of prime number generator.  Expected exactly two integer arguments {startValue} {endValue}");
+	    return;
 	}
 	
 	int startValue;
@@ -34,7 +35,10 @@ public class BootstrapLoader {
 	}
 	
 	PrimeNumberGeneratorFactory factory = new PrimeNumberGeneratorFactoryImpl();
-	System.out.print(factory.createPrimeNumberGenerator().generate(startValue, endValue));
+	
+	System.out.println();
+	System.out.println(factory.createPrimeNumberGenerator().generate(startValue, endValue));
+	System.out.println();
     }
 
 }

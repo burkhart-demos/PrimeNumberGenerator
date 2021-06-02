@@ -1,16 +1,13 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import api.PrimeNumberGenerator;
-import api.PrimeNumberGeneratorFactory;
-import api.PrimeSieve;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGenerator;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGeneratorFactory;
 
 public class SievePrimeGenerator implements PrimeNumberGenerator{
     
-    private PrimeNumberGeneratorFactory factory;
+    private final PrimeNumberGeneratorFactory factory;
     
     /**
      * A prime generator that uses an underlying prime sieve algorithm to determine prime numbers.
@@ -18,7 +15,7 @@ public class SievePrimeGenerator implements PrimeNumberGenerator{
      * @param factory a PrimeNumberGeneratorFactory instance
      * @see PrimeNumberGeneratorFactory
      */
-    public SievePrimeGenerator(PrimeNumberGeneratorFactory factory) {
+    public SievePrimeGenerator(final PrimeNumberGeneratorFactory factory) {
 	this.factory = factory;
     }
     
@@ -28,7 +25,7 @@ public class SievePrimeGenerator implements PrimeNumberGenerator{
     }
 
     @Override
-    public boolean isPrime(int value) {
+    public boolean isPrime(final int value) {
 	if(value < FIRST_PRIME_NUMBER) {
 	    return false;
 	}

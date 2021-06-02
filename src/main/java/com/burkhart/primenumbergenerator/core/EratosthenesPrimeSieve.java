@@ -1,15 +1,15 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
 import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import api.PrimeSieve;
+import com.burkhart.primenumbergenerator.api.PrimeSieve;
 
 public class EratosthenesPrimeSieve implements PrimeSieve{
     
-    private BitSet sieve;
+    private final BitSet sieve;
 
     /**
      * Represents a sieve using the Eratosthenes algorithm.  Initially all values greater than one 
@@ -24,15 +24,15 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
     }
     
     @Override
-    public List<Integer> generate(int startValue, int endValue) {
-	int minValue = Math.min(startValue, endValue) > 0 ? Math.min(startValue, endValue) : 0;
-	int maxValue = Math.max(startValue, endValue) > 0 ? Math.max(startValue, endValue) : 0;
+    public List<Integer> generate(final int startValue, final int endValue) {
+	final int minValue = Math.min(startValue, endValue) > 0 ? Math.min(startValue, endValue) : 0;
+	final int maxValue = Math.max(startValue, endValue) > 0 ? Math.max(startValue, endValue) : 0;
 	
-        for(int i = 2; i <= Math.sqrt(maxValue); i++){
-            if(this.isPrime(i)){
-                for(int j = i*i; j <= maxValue; j = j+i){
-                    this.markComposite(j);
-                    if(additionOverflow(j, i)) {
+        for(int factor = 2; factor <= Math.sqrt(maxValue); factor++){
+            if(this.isPrime(factor)){
+                for(int multiple = factor*factor; multiple <= maxValue; multiple = multiple+factor){
+                    this.markComposite(multiple);
+                    if(additionOverflow(multiple, factor)) {
                 	break;
                     }
                 }
@@ -49,7 +49,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
      * @param value integer value to test
      * @return true if the value is marked prime, else false
      */
-    private boolean isPrime(int value) {
+    private boolean isPrime(final int value) {
 	return !this.sieve.get(value);
     }
     
@@ -58,10 +58,8 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
      * 
      * @param value integer value to set as a composite number
      */
-    private void markComposite(int value) {
-	if(value >= 0) {
-	    this.sieve.set(value, true);
-	}
+    private void markComposite(final int value) {
+	this.sieve.set(value, true);
     }
     
     /**
@@ -72,7 +70,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
      * @param b integer value
      * @return true if a + b > MAX_INTEGER, else false
      */
-    private static boolean additionOverflow(int a, int b) {
+    private static boolean additionOverflow(final int a, final int b) {
 	return (long)a + (long)b > Integer.MAX_VALUE;
     }
 }

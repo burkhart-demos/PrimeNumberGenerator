@@ -1,11 +1,12 @@
-package core;
+package com.burkhart.primenumbergenerator.core;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import api.PrimeNumberGenerator;
-import api.PrimeSieve;
+import com.burkhart.primenumbergenerator.api.PrimeNumberGenerator;
+import com.burkhart.primenumbergenerator.api.PrimeSieve;
+import com.burkhart.primenumbergenerator.core.PrimeNumberGeneratorFactoryImpl;
 
 public class PrimeNumberGeneratorFactoryImplTest {
     
