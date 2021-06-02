@@ -20,7 +20,7 @@ public class SievePrimeGenerator implements PrimeNumberGenerator{
     }
     
     @Override
-    public List<Integer> generate(int startValue, int endValue) {
+    public List<Integer> generate(final int startValue, final int endValue) {
         return this.factory.createPrimeSieve().generate(startValue, endValue);
     }
 
@@ -28,10 +28,6 @@ public class SievePrimeGenerator implements PrimeNumberGenerator{
     public boolean isPrime(final int value) {
 	if(value < FIRST_PRIME_NUMBER) {
 	    return false;
-	}
-	
-	if(value == FIRST_PRIME_NUMBER) {
-	    return true;
 	}
 	
 	for(int divisor = 2; divisor <= Math.sqrt(value); divisor++) {
